@@ -35,7 +35,7 @@ let config = {
         24000, 2e9
     ],
     slRates: [
-        0.15
+        0.09
     ]
 };
 
@@ -96,12 +96,14 @@ function getStudentLoanCost(salary)
 }
 
 /* Fetches all elements on the page which add or subtract from the total
-available income, and returns their combined sum */
-function getAnnualSum()
+available income, and returns their combined sum.
+
+sumType: 'yearly' or 'monthly' */
+function getMoneySum(sumType)
 {
     // Fetch all 'pay' (positive increase) and 'cost' elements
-    let pays = document.getElementsByClassName('pay');
-    let costs = document.getElementsByClassName('cost');
+    let pays = document.getElementsByClassName('pay-' + sumType);
+    let costs = document.getElementsByClassName('cost-' + sumType);
     let sum = 0;
 
     // Sum up pays
@@ -110,9 +112,19 @@ function getAnnualSum()
         // We can have both <input> values, as well as p elements which store
         // auto-calculated values
         if (pays[i].tagName == "INPUT")
+        {
+            if (pays[i].value == "")
+                pays[i].value = 0;
+
             sum += parseInt(pays[i].value);
+        }
         else
+        {
+            if (pays[i].value == "")
+                pays[i].value = 0;
+
             sum += parseInt(pays[i].innerHTML);
+        }
     }
 
     // Sum up costs
@@ -121,9 +133,19 @@ function getAnnualSum()
         // We can have both <input> values, as well as p elements which store
         // auto-calculated values
         if (costs[i].tagName == "INPUT")
+        {
+            if (costs[i].value == "")
+                costs[i].value = 0;
+
             sum -= parseInt(costs[i].value);
+        }
         else
+        {
+            if (costs[i].innerHTML == "")
+                costs[i].value = 0;
+
             sum -= parseInt(costs[i].innerHTML);
+        }
     }
 
     return sum;
@@ -147,8 +169,14 @@ function updatePage()
     let slDisplay = document.getElementById('student-loan');
     slDisplay.innerHTML = getStudentLoanCost(salary);
 
+    /* Get yearly + monthly costs, then add them up */
+    yearly = getMoneySum('yearly');
+    monthly = getMoneySum('monthly');
+
+    total = yearly + monthly * 12;
+
     /* Fetch the element showing the gross income, and display the calculated
     income */
     let resultDisplay = document.getElementById('gross-income');
-    resultDisplay.innerHTML = config.currencySymbol + getAnnualSum();
+    resultDisplay.innerHTML = config.currencySymbol + total;
 }
