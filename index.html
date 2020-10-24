@@ -9,7 +9,37 @@
 
     <body>
 
-        <h1>Sample text 123</h1>
+        <script src="calculator.js"></script>
+
+        <!-- Salary prompt -->
+        <div id="salary-prompt">
+            <h2>Income</h2>
+
+            <label for="salary">Annual income before tax:</label>
+            <input type="number" id="salary" class="pay" name="salary" min="0" oninput="updatePage()" />
+        </div>
+
+        <!-- Display mandatory deductions -->
+        <div id="mandatory-deductions">
+            <h2>Mandatory Deductions</h2>
+
+            <!-- Income tax -->
+            <p>Income tax:</p>
+            <p id="income-tax" class="cost"></p>
+
+            <!-- Student laon -->
+            <p>Student loan:</p>
+            <p id="student-loan" class="cost"></p>
+
+            <!-- National insurance -->
+            <p>National insurance:</p>
+            <p id="national-insurance" class="cost"></p>
+        </div>
+
+        <!-- Income after all costs -->
+        <h2>Gross result:</h2>
+        <p>Income after all costs:</p>
+        <p id="gross-income"></p>
 
     </body>
 
