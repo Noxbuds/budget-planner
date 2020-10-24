@@ -1,4 +1,5 @@
-/* Maintains the configuration for all the scripts in this planner */
+/* Maintains the configuration for all the scripts in this planner, and also
+handles saving/loading things */
 
 let config = {
     currencySymbol: "&#163;", // pound symbol, not supported by ASCII
@@ -46,3 +47,59 @@ let config = {
         0.09
     ]
 };
+
+/* Gets the current budget plan as a dictionary containing salary and a list of
+each cost as a JSON string */
+function getBudgetData()
+{
+    /* First fetch salary */
+    salary = parseInt(document.getElementById('salary').value);
+
+    /* Loop through each cost in costsManager.js */
+    let sCosts = [];
+
+    for (let key in costs)
+    {
+        curBox = {name: '', cost: 0};
+
+        // Fetch this box's name
+        curBox.name = document.getElementById(config.names.costName + '-' + key).value;
+
+        // And its cost
+        curBox.cost = parseInt(document.getElementById(config.names.costTag + '-' + key).value);
+
+        sCosts.push(curBox);
+    }
+
+    // Format it and return
+    data = {salary: salary, costs: sCosts};
+    return JSON.stringify(data);
+}
+
+/* Saves the budget data to the user's local machine */
+function save()
+{
+    // Create JSON file blob
+    let file = new Blob([getBudgetData()], {type: 'application/json'});
+
+    // Create a hyperlink to download this file
+    let link = document.createElement('a');
+    let url = URL.createObjectURL(file);
+
+    link.href = url;
+    link.download = "budget_data.txt";
+
+    // Add the hyperlink to the HTML page and click it
+    document.body.appendChild(link);
+    link.click();
+
+    // Remove them
+    link.remove();
+    URL.revokeObjectURL(file);
+}
+
+/* Loads budget data into the web page */
+function load(data)
+{
+
+}
