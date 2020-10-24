@@ -1,1 +1,30 @@
-/* etc */
+body {
+    font-family:sans-serif;
+    padding:2px;
+}
+
+/* We want to make our sections a light grey with thin border */
+.section {
+    border-style:solid;
+    border-width:4px;
+
+    background-color: #EEEEEE;
+
+    padding:8px;
+
+    margin:4px;
+
+    width:15%;
+}
+
+/* Make the cost display light grey, with a thin border */
+.cost-display {
+    border-style:solid;
+    border-width:2px;
+
+    background-color: #CCCCCC;
+
+    padding:4px;
+
+    width:90%;
+}

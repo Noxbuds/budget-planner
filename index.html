@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html>
 
-    <header>
+    <head>
         <title>Budget Planner</title>
-        <link rel="stylesheet" src="style.css" />
-    </header>
+        <link rel="stylesheet" href="style.css" />
+    </head>
 
     <body>
 
@@ -14,7 +14,7 @@
         <script src="costsManager.js"></script>
 
         <!-- Salary prompt -->
-        <div id="salary-prompt">
+        <div id="salary-prompt" class="section">
             <h2>Income</h2>
 
             <label for="salary">Annual income before tax:</label>
@@ -22,7 +22,7 @@
         </div>
 
         <!-- Display mandatory deductions -->
-        <div id="mandatory-deductions">
+        <div id="mandatory-deductions" class="section">
             <h2>Mandatory Deductions</h2>
 
             <!-- Income tax -->
@@ -39,7 +39,7 @@
         </div>
 
         <!-- User-defined costs -->
-        <div id="user-costs">
+        <div id="user-costs" class="section">
             <h2>Costs:</h2>
             <p id="max-cost"></p>
 
@@ -49,7 +49,7 @@
         </div>
 
         <!-- Income after all costs -->
-        <div id="gross-result">
+        <div id="gross-result" class="section">
             <h2>Gross result:</h2>
             <p>Income after all costs:</p>
             <p id="gross-income"></p>

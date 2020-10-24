@@ -69,7 +69,7 @@ function addNewCost()
     removeBtn.setAttribute("type", "button");
     removeBtn.setAttribute("name", config.names.removeCost + "-" + boxId);
     removeBtn.setAttribute("onclick", "removeCost(" + boxId + "); updatePage()");
-    removeBtn.innerHTML = "Remove cost";
+    removeBtn.innerHTML = "Remove";
     box.appendChild(removeBtn);
 
     // Add it to the costs list

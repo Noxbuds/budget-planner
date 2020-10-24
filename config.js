@@ -87,7 +87,7 @@ function save()
     let url = URL.createObjectURL(file);
 
     link.href = url;
-    link.download = "budget_data.txt";
+    link.download = "budget_data.json";
 
     // Add the hyperlink to the HTML page and click it
     document.body.appendChild(link);
