@@ -1,43 +1,5 @@
-// Contains the core functionality for calculations
-
-let config = {
-    currencySymbol: "&#163;", // pound symbol, not supported by ASCII
-
-    // A dictionary of the strings to use
-    strings: {
-        incomeTax: "Income tax: ",
-        studentLoan: "Student loan: ",
-        nationalInsurance: "National insurance: "
-    },
-
-    /* Tax rates up to each bracket
-    First element in brackets is the minimum amount to qualify for income
-    tax, the largest value is the maximum amount considered. Each value
-    in taxRates represents the rate between taxBrackets[i] and taxBrackets[i + 1] */
-    taxBrackets: [
-        12500, 50000, 150000, 2e9
-    ],
-    taxRates: [
-        0.2, 0.4, 0.45
-    ],
-
-    /* National insurance brackets and rates, defined the same way as tax
-    brackets */
-    niBrackets: [
-        9504.12, 50004, 2e9
-    ],
-    niRates: [
-        0.12, 0.02
-    ],
-
-    /* Student loan brackets and rate, defined like tax & NI brackets */
-    slBrackets: [
-        24000, 2e9
-    ],
-    slRates: [
-        0.09
-    ]
-};
+/* Contains the core functionality for calculations.
+Assumes config.js has already been imported */
 
 /* Calculates the cost of something given a list of brackets and the rates
 at which to deduct those brackets (eg tax, student loans) */
@@ -102,8 +64,8 @@ sumType: 'yearly' or 'monthly' */
 function getMoneySum(sumType)
 {
     // Fetch all 'pay' (positive increase) and 'cost' elements
-    let pays = document.getElementsByClassName('pay-' + sumType);
-    let costs = document.getElementsByClassName('cost-' + sumType);
+    let pays = document.getElementsByClassName(config.names.payTag + '-' + sumType);
+    let costs = document.getElementsByClassName(config.names.costTag + '-' + sumType);
     let sum = 0;
 
     // Sum up pays
@@ -170,8 +132,8 @@ function updatePage()
     slDisplay.innerHTML = getStudentLoanCost(salary);
 
     /* Get yearly + monthly costs, then add them up */
-    yearly = getMoneySum('yearly');
-    monthly = getMoneySum('monthly');
+    yearly = getMoneySum(config.names.yearlyTag);
+    monthly = getMoneySum(config.names.monthlyTag);
 
     total = yearly + monthly * 12;
 

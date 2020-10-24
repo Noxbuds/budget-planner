@@ -10,8 +10,6 @@ function getNextId()
     let id = 0;
     for (id = 0; id <= maxId; id++)
     {
-        console.log(id);
-        console.log(id in costs);
         // If this ID is not used, return it
         if (!(id in costs))
         {
@@ -37,8 +35,8 @@ function addNewCost()
     // Create a new div element
     let box = document.createElement("div");
     let boxId = getNextId();
-    box.id = "cost-display-" + boxId;
-    box.className = "cost-display";
+    box.id = config.names.costDisplay + "-" + boxId;
+    box.className = config.names.costDisplay;
 
     if (boxId > maxId)
         maxId = boxId;
@@ -50,7 +48,7 @@ function addNewCost()
 
     let nameField = document.createElement("input");
     nameField.setAttribute("type", "text");
-    nameField.id = "cost-name-" + boxId;
+    nameField.id = config.names.costName + "-" + boxId;
     box.appendChild(nameField);
 
     // Add a prompt for the monthly amount
@@ -62,14 +60,14 @@ function addNewCost()
     costField.setAttribute("type", "number");
     costField.setAttribute("min", "0");
     costField.setAttribute("oninput", "updatePage()");
-    costField.className = "cost-monthly";
-    costField.id = "cost-" + boxId;
+    costField.className = config.names.costTag + "-" + config.names.monthlyTag;
+    costField.id = config.names.costTag + "-" + boxId;
     box.appendChild(costField);
 
     // Add a 'remove' button
     let removeBtn = document.createElement("button");
     removeBtn.setAttribute("type", "button");
-    removeBtn.setAttribute("name", "remove-cost-" + boxId);
+    removeBtn.setAttribute("name", config.names.removeCost + "-" + boxId);
     removeBtn.setAttribute("onclick", "removeCost(" + boxId + "); updatePage()");
     removeBtn.innerHTML = "Remove cost";
     box.appendChild(removeBtn);
