@@ -93,13 +93,44 @@ function save()
     document.body.appendChild(link);
     link.click();
 
-    // Remove them
+    // Remove the hyperlink and URL
     link.remove();
     URL.revokeObjectURL(file);
 }
 
-/* Loads budget data into the web page */
-function load(data)
+/* Prompts the user to select a file to load */
+function load(input)
 {
+    // Fetch the file
+    let file = input.files[0];
 
+    // Fetch the text data from the file and load it
+    file.text().then(text => loadData(text));
+}
+
+/* Loads budget data into the web page */
+function loadData(data)
+{
+    // Convert the JSON data to a table
+    data = JSON.parse(data);
+
+    // Insert the salary (requires costsManager.js to be loaded)
+    document.getElementById('salary').value = data.salary;
+
+    console.log(data);
+
+    // Add each cost
+    for (i in data.costs)
+    {
+        // Add the cost div
+        let costId = addNewCost();
+        let cost = data.costs[i];
+
+        // Update its data
+        document.getElementById(config.names.costTag + '-' + costId).value = cost.cost;
+        document.getElementById(config.names.costName + '-' + costId).value = cost.name;
+    }
+
+    // Update the page
+    updatePage();
 }

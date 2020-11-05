@@ -29,6 +29,14 @@ function removeCost(id)
     }
 }
 
+function removeAllCosts()
+{
+    for (id in costs)
+    {
+        removeCost(id);
+    }
+}
+
 /* Adds a new cost that the user can configure */
 function addNewCost()
 {
@@ -77,4 +85,7 @@ function addNewCost()
 
     // Add it to the HTMl page
     document.getElementById('costs-root').append(box);
+
+    // Return the ID for use later
+    return boxId;
 }

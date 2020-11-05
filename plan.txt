@@ -1,0 +1,15 @@
+Plan for budget planner:
+
+0. Allow user to load if they want and skip 1
+
+1. Prompt user to enter their pre-tax salary
+
+2. Mandatory deductions:
+- Income tax
+- Student loan (configurable in control panel)
+- National insurance
+
+3. Allow user to enter extra costs
+
+4. Allow user to save plan, including configuration and
+additional costs
