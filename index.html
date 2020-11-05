@@ -26,15 +26,15 @@
             <h2>Mandatory Deductions</h2>
 
             <!-- Income tax -->
-            <p>Income tax:</p>
+            <p>Income tax (annual):</p>
             <p id="income-tax" class="cost-yearly"></p>
 
             <!-- Student laon -->
-            <p>Student loan:</p>
+            <p>Student loan (annual):</p>
             <p id="student-loan" class="cost-yearly"></p>
 
             <!-- National insurance -->
-            <p>National insurance:</p>
+            <p>National insurance (annual):</p>
             <p id="national-insurance" class="cost-yearly"></p>
         </div>
 
@@ -55,7 +55,7 @@
             <p id="gross-income"></p>
         </div>
 
-        <input type="file" id="file-selector" accept="application/json" onchange="load(this)"/>
+        <input type="file" id="file-selector" accept="application/json" oninput="load(this)"/>
         <br />
         <button type="button" name="save" onclick="save()">Save</button>
 

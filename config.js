@@ -101,6 +101,8 @@ function save()
 /* Prompts the user to select a file to load */
 function load(input)
 {
+    removeAllCosts();
+
     // Fetch the file
     let file = input.files[0];
 
